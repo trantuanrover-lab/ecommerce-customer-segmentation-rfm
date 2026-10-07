@@ -15,6 +15,7 @@ customer_aggregated AS (
         c.customer_id,
         c.customer_name,
         c.customer_age,
+    
         CASE 
             WHEN c.customer_age < 25 THEN 'Under 25'
             WHEN c.customer_age BETWEEN 25 AND 34 THEN '25-34'
@@ -49,7 +50,5 @@ customer_aggregated AS (
 
 SELECT *,
     SUM(total_profit) OVER (ORDER BY total_profit DESC, customer_id ASC) AS cumulative_profit,
-    ROUND(
-        SUM(total_profit) OVER (ORDER BY total_profit DESC, customer_id ASC) * 100.0 / 
-        NULLIF(SUM(total_profit) OVER (), 0), 2) AS cum_profit_pct
+    ROUND(SUM(total_profit) OVER (ORDER BY total_profit DESC, customer_id ASC) * 100.0 / NULLIF(SUM(total_profit) OVER (), 0), 2) AS cum_profit_pct
 FROM customer_aggregated;
