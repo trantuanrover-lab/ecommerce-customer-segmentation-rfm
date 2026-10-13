@@ -65,13 +65,18 @@ Quá trình hình thành đề tài đi theo 4 bước:
 ```
 .
 ├── README.md
+├── data/
+│   ├── raw/                # các file CSV gốc từ Kaggle
+│   └── transformed/        # final_customer_analytics.csv (đầu ra sau SQL + Python)
 ├── sql/
 │   ├── schema.sql          # cấu trúc các bảng trong SQLite
-│   └── queries.sql         # tạo bảng master_customer_summary
-├── notebook/
+│   ├── queries.sql         # tạo bảng master_customer_summary
+│   └── sqlite-database.db  # database SQLite
+├── python/
 │   └── rfm-transformed-notebook.ipynb
-├── data/
-│   └── final_customer_analytics.csv   # file đầu ra sau SQL + Python
+├── output/
+│   └── power_bi/
+│       └── dashboard.pbix  # dashboard Power BI
 └── images/                 # ảnh dashboard dùng trong README
 ```
 
@@ -189,7 +194,7 @@ Một khách hàng có 3 đơn, tổng net sales 3,000, lần mua cuối cách n
 
 ## 4. Python: RFM và Pareto
 
-Notebook: [`notebook/rfm-transformed-notebook.ipynb`](notebook/rfm-transformed-notebook.ipynb)
+Notebook: [`python/rfm-transformed-notebook.ipynb`](python/rfm-transformed-notebook.ipynb)
 
 ### 4.1. Mục đích
 
@@ -499,9 +504,9 @@ Phân loại bằng 2 trục: **Pareto 80%** (giá trị) và **Active / Churn R
 
 ## 9. Cách chạy lại dự án
 
-1. Tải bộ dữ liệu từ Kaggle (4 file CSV) và nạp vào SQLite (ví dụ bằng DB Browser for SQLite), tạo các bảng theo [`sql/schema.sql`](sql/schema.sql).
+1. Tải bộ dữ liệu từ Kaggle (4 file CSV, đặt trong `data/raw/`) và nạp vào SQLite (ví dụ bằng DB Browser for SQLite), tạo các bảng theo [`sql/schema.sql`](sql/schema.sql). Có thể dùng sẵn database `sql/sqlite-database.db`.
 2. Chạy [`sql/queries.sql`](sql/queries.sql) để tạo bảng `master_customer_summary`.
 3. Mở notebook, **sửa `db_path` và `output_path`** trỏ về đường dẫn trên máy bạn (notebook đang dùng đường dẫn Windows cục bộ), rồi chạy lần lượt các cell.
-4. Nạp `final_customer_analytics.csv` vào Power BI để dựng dashboard.
+4. Nạp `data/transformed/final_customer_analytics.csv` vào Power BI để dựng dashboard, hoặc mở trực tiếp `output/power_bi/dashboard.pbix`.
 
 **Yêu cầu:** Python 3, `pandas`, `numpy`, `sqlite3` (có sẵn), Jupyter; Power BI Desktop.
