@@ -64,7 +64,6 @@ Quá trình hình thành đề tài đi theo 4 bước:
 
 ```
 .
-├── README.md
 ├── data/
 │   ├── raw/                # các file CSV gốc từ Kaggle
 │   └── transformed/        # final_customer_analytics.csv (đầu ra sau SQL + Python)
@@ -77,6 +76,7 @@ Quá trình hình thành đề tài đi theo 4 bước:
 ├── output/
 │   └── power_bi/
 │       └── dashboard.pbix  # dashboard Power BI
+├── README.md
 └── images/                 # ảnh dashboard dùng trong README
 ```
 
