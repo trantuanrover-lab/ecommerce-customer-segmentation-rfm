@@ -64,14 +64,19 @@ Quá trình hình thành đề tài đi theo 4 bước:
 
 ```
 .
-├── README.md
+├── data/
+│   ├── raw/                # các file CSV gốc từ Kaggle
+│   └── transformed/        # final_customer_analytics.csv (đầu ra sau SQL + Python)
 ├── sql/
 │   ├── schema.sql          # cấu trúc các bảng trong SQLite
-│   └── queries.sql         # tạo bảng master_customer_summary
-├── notebook/
+│   ├── queries.sql         # tạo bảng master_customer_summary
+│   └── sqlite-database.db  # database SQLite
+├── python/
 │   └── rfm-transformed-notebook.ipynb
-├── data/
-│   └── final_customer_analytics.csv   # file đầu ra sau SQL + Python
+├── output/
+│   └── power_bi/
+│       └── dashboard.pbix  # dashboard Power BI
+├── README.mdimages/        # ảnh dashboard dùng trong README
 └── images/                 # ảnh dashboard dùng trong README
 ```
 
