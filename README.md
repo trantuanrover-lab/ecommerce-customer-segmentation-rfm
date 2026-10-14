@@ -126,6 +126,7 @@ WITH order_summary AS (
         MAX(order_date) AS last_order_date,
         ROUND(SUM(net_sales) * 1.0 / NULLIF(COUNT(DISTINCT order_id), 0), 2) AS avg_basket_size
     FROM ecommerce_sales_customer_analytics_150k
+    WHERE UPPER(TRIM(order_status)) = 'COMPLETED'
     GROUP BY customer_id),
 
 customer_aggregated AS (
